@@ -16,3 +16,11 @@ function sum(a: number, b: number): number {
 }
 
 // sum(10, 20, 30, 40); js와 다르게 ts는 정해진 인자보다 더 많을 경우 에러메시지를 띄워준다.
+
+// 함수의 옵셔널 파라미터
+function log(a: string, b?: string) {
+  console.log(a, b);
+}
+
+log('hello world');
+log('hello ts', 'abc');
