@@ -1,8 +1,19 @@
+// type Todo = {
+//   id: number;
+//   title: string;
+//   done: boolean;
+// }
+interface Todo {
+  id: number;
+  title: string;
+  done: boolean;
+}
+
 // 할일 목록을 받는 배열의 형태
-let todoItems: { id: number, title: string, done: boolean }[];
+let todoItems: Todo[];
 
 // api
-function fetchTodoItems(): { id: number, title: string, done: boolean }[] {
+function fetchTodoItems(): Todo[] {
   const todos = [
     { id: 1, title: '안녕', done: false },
     { id: 2, title: '타입', done: false },
@@ -18,7 +29,7 @@ function fetchTodos(): object[] {
 }
 
 // 함수에 반환 값이 없을 때 void를 붙이면 됨
-function addTodo(todo: { id: number; title: string; done: boolean }): void {
+function addTodo(todo: Todo): void {
   todoItems.push(todo);
 }
 
@@ -26,7 +37,7 @@ function deleteTodo(index: number): void {
   todoItems.splice(index, 1);
 }
 
-function completeTodo(index: number, todo: { id: number; title: string; done: boolean }): void {
+function completeTodo(index: number, todo: Todo): void {
   todo.done = true;
   todoItems.splice(index, 1, todo);
 }
