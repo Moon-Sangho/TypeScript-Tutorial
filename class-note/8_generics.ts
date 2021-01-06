@@ -67,3 +67,50 @@ interface Dropdown<T> {
 }
 
 const obj: Dropdown<number> = { value: 123, selected: false };
+
+// :: 제네릭의 타입 제한 1
+// function logTextLength<T>(text: T): T {
+//   console.log(text.length) // length 부분에서 에러 발생
+//   return text;
+// }
+
+// logTextLength('hi');
+
+// 아래와 같이 배열의 형태로 바꿔 사용 가능
+function logTextLength<T>(text: T[]): T[] {
+  console.log(text.length);
+  text.forEach(function (text) {
+    console.log(text);
+  })
+  return text;
+}
+
+logTextLength<string>(['hi', 'abc']);
+
+// :: 제네릭의 타입 제한 2 - 정의된 타입 이용하기
+interface LengthType {
+  length: number;
+}
+
+function logTextLength2<T extends LengthType>(text: T): T {
+  text.length;
+  return text;
+}
+logTextLength2('a');
+// logTextLength2(10); // 인자가 숫자인 경우는 LengthType에 포함되지 않기 때문에 에러
+logTextLength2({ length: 10 }) // 인자에 length라는 속성이 들어가면 객체도 사용 가능
+
+// :: 제네릭의 타입 제한 3 - keyof
+interface getShoppingItem {
+  name: string;
+  price: number;
+  stock: number;
+}
+
+function getShoppingItemOption<T extends keyof getShoppingItem>(itemOption: T): T {
+  return itemOption;
+}
+
+// getShoppingItemOption(10); // 에러
+// getShoppingItemOption<string>('a'); // 에러
+getShoppingItemOption('name');
