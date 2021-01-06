@@ -50,6 +50,20 @@ str.split('')
 const login = logText<boolean>(true);
 
 const a = logText('a');
-logText(10);
-// const num = logNumber(10);
-// logText(true);
+
+// :: interface에 generic을 선언하는 방법
+// 1. 일반 interface
+// interface Dropdown {
+//   value: string;
+//   selected: boolean;
+// }
+
+// const obj: Dropdown = { value: 'abc', selected: false };
+
+// 2. interface에 generic 선언
+interface Dropdown<T> {
+  value: T;
+  selected: boolean;
+}
+
+const obj: Dropdown<number> = { value: 123, selected: false };
