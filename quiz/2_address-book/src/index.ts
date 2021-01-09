@@ -105,3 +105,7 @@ class AddressBook {
 }
 
 new AddressBook();
+
+// 타입 단언 예제
+let div = document.querySelector('.container') as HTMLDivElement;
+div.innerText;
