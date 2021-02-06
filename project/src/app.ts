@@ -82,14 +82,14 @@ async function handleListClick(event) {
   clearRecoveredList();
   startLoadingAnimation();
   isDeathLoading = true;
-  const { data: deathResponse } = await fetchCountryInfo(selectedId, "deaths");
+  const { data: deathResponse } = await fetchCountryInfo(selectedId, CovidStatus.Deaths);
   const { data: recoveredResponse } = await fetchCountryInfo(
     selectedId,
-    "recovered"
+    CovidStatus.Recovered,
   );
   const { data: confirmedResponse } = await fetchCountryInfo(
     selectedId,
-    "confirmed"
+    CovidStatus.Confirmed,
   );
   endLoadingAnimation();
   setDeathsList(deathResponse);
