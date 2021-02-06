@@ -1,3 +1,5 @@
+// @ts-check
+
 // utils
 function $(selector) {
   return document.querySelector(selector);
@@ -36,11 +38,24 @@ function createSpinnerElement(id) {
 let isDeathLoading = false;
 let isRecoveredLoading = false;
 
+// js-dock으로 type 지정하기
+/**
+ * @typedef {object} CovidSummary
+ * @property {Array<object>} Country
+ */
+
 // api
+/**
+ * @returns {Promise<CovidSummary>}
+ */
 function fetchCovidSummary() {
   const url = "https://api.covid19api.com/summary";
   return axios.get(url);
 }
+
+// fetchCovidSummary().then(res => {
+//   console.log(res);
+// })
 
 function fetchCountryInfo(countryCode, status) {
   // params: confirmed, recovered, deaths
