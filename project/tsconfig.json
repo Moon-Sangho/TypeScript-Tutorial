@@ -5,7 +5,9 @@
     "outDir": "./built",
     "moduleResolution": "Node",
     "lib": ["ES2015", "DOM", "DOM.Iterable"],
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    // @types로 Definitely Typed 오픈 소스가 제공되지 않을 때, 직접 만들어줄 수 있다.
+    // "typeRoots": ["./node_modules", "types"]
   },
   "include": ["./src/**/*"]
 }
