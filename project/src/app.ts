@@ -1,5 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import * as Chart from 'chart.js';
+import { CountrySummaryResponse, CovidSummaryResponse } from './covid/index';
 
 // utils
 function $(selector: string) {
@@ -40,10 +41,12 @@ function createSpinnerElement(id: string) {
 let isDeathLoading = false;
 const isRecoveredLoading = false;
 
-function fetchCovidSummary() {
+function fetchCovidSummary(): Promise<AxiosResponse<CovidSummaryResponse>> {
   const url = 'https://api.covid19api.com/summary';
   return axios.get(url);
 }
+
+fetchCovidSummary().then(res => res.data);
 
 enum CovidStatus {
   Confirmed = 'confirmed',
@@ -51,7 +54,10 @@ enum CovidStatus {
   Deaths = 'deaths',
 }
 
-function fetchCountryInfo(countryCode: string, status: CovidStatus) {
+function fetchCountryInfo(
+  countryCode: string,
+  status: CovidStatus
+): Promise<AxiosResponse<CountrySummaryResponse>> {
   // params: confirmed, recovered, deaths
   const url = `https://api.covid19api.com/country/${countryCode}/status/${status}`;
   return axios.get(url);
